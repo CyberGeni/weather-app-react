@@ -34,7 +34,7 @@ function App() {
         {/* temperature */}
         <div className="w-full">
           {/* <img alt="" /> */}
-          <h1 className="text-8xl mt-12 mb-4">{}28℃</h1>
+          <h1 className="text-8xl mt-12 mb-4 font-medium">{}28℃</h1>
           <img src="" alt="" />
         </div>
         {/* weather condition */}
