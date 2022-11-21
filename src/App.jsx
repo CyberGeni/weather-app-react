@@ -47,7 +47,7 @@ function App() {
         {/* temperature */}
         <div className="mt-12 mb-4 flex justify-center items-center space-x-3">
           <img className="h-fit sm:w-16 md:w-24" src={`http://openweathermap.org/img/w/${Object.keys(data).length > 0 && data.weather[0].icon}.png`} alt="" />
-          <h1 className="text-5xl sm:text-6xl md:text-8xl font-semibold">{Object.keys(data).length > 0 && Math.floor(data.main.temp - 273.15)}℃</h1>
+          <h1 className="text-5xl sm:text-6xl md:text-8xl font-semibold">{Object.keys(data).length > 0 && Math.floor(data.main.temp - 273.15)}°C </h1>
           <img className="h-fit sm:w-16 md:w-24" src={`http://openweathermap.org/img/w/${Object.keys(data).length > 0 && data.weather[0].icon}.png`} alt="" />
         </div>
         {/* weather condition */}
