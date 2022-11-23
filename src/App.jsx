@@ -13,7 +13,7 @@ function App() {
 
   const API_KEY = 'f130bc4b96a05c8ead2afa754aaa4943'
   const API_URL_SEARCH = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
-  const API_URL_DEFAULT =  `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+  // const API_URL_DEFAULT = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
   // const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=Lagos&appid=${API_KEY}`
    
   useEffect(() => {
@@ -24,19 +24,31 @@ function App() {
           setData(res.data);
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
         });
-      
+      function convertToCity() {
+        axios.get(`https://us1.locationiq.com/v1/reverse?key=pk.4897210204962b9a5ddc00a7cda259be&lat=${lat}&lon=${lon}&format=json`)
+          .then((res) => {
+            console.log(res.data.address.city);
+            setCity(res.data.address.city);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
       navigator.geolocation.getCurrentPosition(function (position) {
         console.log("Latitude is :", position.coords.latitude);
         console.log("Longitude is :", position.coords.longitude);
         setLat(position.coords.latitude);
         setLon(position.coords.longitude);
       });
+      
+      convertToCity();
     }
     
     fetchData();
   }, [city, lat, lon]);
+  
   // const handleKeyDown = event => {
   //       console.log('User pressed: ', event.key);
   
@@ -58,8 +70,9 @@ function App() {
           <input 
           onChange={event => setCity(event.target.value)}
           // onKeyDown={handleKeyDown} 
-          className="focus:outline-[#395f66] rounded-full px-6 py-4 w-full sm:w-96 shadow-md" ref={ref} type="search" defaultValue="mombasa" contentEditable placeholder="Ibadan"/>
+          className="focus:outline-[#395f66] rounded-full px-6 py-4 w-full sm:w-96 shadow-md" ref={ref} type="search" defaultValue={city} contentEditable placeholder="Ibadan"/>
         {/* </form> */}
+
         {/* temperature */}
         <div className="mt-12 mb-4 flex justify-center items-center space-x-3">
           <img className="h-fit sm:w-16 md:w-24" src={`http://openweathermap.org/img/w/${Object.keys(data).length > 0 && data.weather[0].icon}.png`} alt="" />
