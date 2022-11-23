@@ -9,10 +9,11 @@ function App() {
   const [lat, setLat] = useState()
   const [lon, setLon] = useState()
 
-  const ref = useRef(null);
+  // const ref = useRef(null);
 
   const API_KEY = 'f130bc4b96a05c8ead2afa754aaa4943'
   const API_URL_SEARCH = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
+  
   // const API_URL_DEFAULT = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
   // const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=Lagos&appid=${API_KEY}`
    
@@ -70,7 +71,9 @@ function App() {
           <input 
           onChange={event => setCity(event.target.value)}
           // onKeyDown={handleKeyDown} 
-          className="focus:outline-[#395f66] rounded-full px-6 py-4 w-full sm:w-96 shadow-md" ref={ref} type="search" defaultValue={city} contentEditable placeholder="Ibadan"/>
+          className="focus:outline-[#395f66] rounded-full px-6 py-4 w-full sm:w-96 shadow-md" 
+          // ref={ref} 
+          type="search" defaultValue={city} contentEditable placeholder="Ibadan"/>
         {/* </form> */}
 
         {/* temperature */}
